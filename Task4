@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Login Dashboard</title>
+</head>
+<body>
+
+    <div class="container" id="loginContainer">
+        <h2>Login</h2>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username (Email):</label>
+                <input type="text" id="username" name="username" placeholder="Enter your email" required>
+                <span id="usernameError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <span id="passwordError" class="error"></span>
+            </div>
+
+            <button type="button" onclick="validateLogin()">Login</button>
+            <a href="#" onclick="forgotPassword()">Forgot your password?</a>
+        </form>
+    </div>
+
+    <div class="container" id="dashboardContainer" style="display:none;">
+        <!-- Dashboard components go here -->
+        <h2>Welcome to the Dashboard</h2>
+        <!-- Actual components like charts and dropdowns go here -->
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+
+function validateLogin() {
+    // Reset previous errors
+    document.getElementById("usernameError").innerText = "";
+    document.getElementById("passwordError").innerText = "";
+
+    // Validate username (email format)
+    const username = document.getElementById("username").value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(username)) {
+        document.getElementById("usernameError").innerText = "Invalid email format";
+        return;
+    }
+
+    // Validate password (masking, @, uppercase, number)
+    const password = document.getElementById("password").value;
+    const passwordRegex = /^(?=.*[@])(?=.*[A-Z])(?=.*[0-9a-zA-Z]).{8,}$/;
+    if (!passwordRegex.test(password)) {
+        document.getElementById("passwordError").innerText = "Invalid password format";
+        return;
+    }
+
+    // Check if password is correct
+    if (password === "SmartServTest@123") {
+        // Hide login container and show dashboard container
+        document.getElementById("loginContainer").style.display = "none";
+        document.getElementById("dashboardContainer").style.display = "block";
+    } else {
+        alert("Incorrect password. Please try again.");
+    }
+}
+
+function forgotPassword() {
+    // In a real application, you might open a mail client or a modal for password reset
+    window.location.href = "mailto:support@smartserv.io";
+}
+
+
+
