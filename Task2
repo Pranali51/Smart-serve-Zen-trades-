@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Product Display</title>
+</head>
+<body>
+
+    <div class="container mt-4">
+        <h2>Product Display</h2>
+
+        <div class="form-group">
+            <label for="displayOptions">Display Handling Options:</label>
+            <select multiple class="form-control" id="displayOptions">
+                <!-- Populate this dynamically with available fields -->
+            </select>
+            <br>
+            <button onclick="addFields()"> >></button>
+            <button onclick="removeFields()"> <<</button>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr id="tableHeader">
+                    <!-- Table headers will be dynamically populated based on selected fields -->
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Table rows will be dynamically populated based on data -->
+            </tbody>
+        </table>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
