@@ -1,0 +1,13 @@
+import requests
+
+# Fetch JSON data from the API
+url = "https://s3.amazonaws.com/open-to-cors/assignment.json"
+response = requests.get(url)
+data = response.json()
+
+# Sort data based on descending popularity
+sorted_data = sorted(data, key=lambda x: x['Popularity'], reverse=True)
+
+# Display data with Title, Price ordered by descending popularity
+for product in sorted_data:
+    print(f"Title: {product['Title']}, Price: {product['Price']}, Popularity: {product['Popularity']}")
